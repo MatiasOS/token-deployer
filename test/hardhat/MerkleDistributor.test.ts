@@ -72,7 +72,7 @@ describe('MerkleDistributor Test', function () {
         expect(await merkleDistributor.token()).to.equal(alTokeOFT.address)
     })
 
-    it('Should be able to claim their tokens', async function () {
+    it('Should be able to claim tokens', async function () {
         const claimantsProofs: { [key: string]: string[] } = {}
         const claimantLeafs: { [key: string]: string[] } = {}
 
@@ -97,4 +97,6 @@ describe('MerkleDistributor Test', function () {
         const balanceOfA = await alTokeOFT.balanceOf(claimantA.address)
         expect(balanceOfA.toString()).to.equal(amountA)
     })
+
+    it('Should fail to claim tokens multiple times')
 })
