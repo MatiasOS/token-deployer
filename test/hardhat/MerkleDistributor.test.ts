@@ -98,5 +98,22 @@ describe('MerkleDistributor Test', function () {
         expect(balanceOfA.toString()).to.equal(amountA)
     })
 
-    it('Should fail to claim tokens multiple times')
+    it('Should fail to claim tokens multiple times', async function () {
+        const claimantsProofs: { [key: string]: string[] } = {}
+
+        for (const [i, v] of tree.entries()) {
+            claimantsProofs[v[0]] = tree.getProof(i)
+        }
+        try {
+            await merkleDistributor.connect(claimantA).claim(
+                claimantA.address, // Claimant address
+                amountA, // amount to claim
+                claimantsProofs[claimantA.address] // proof
+            )
+            expect.fail('Expected error not received')
+        } catch (e: any) {
+            expect(e).to.be.instanceOf(Error)
+            expect(e.message).to.include('AlreadyClaimed()')
+        }
+    })
 })
