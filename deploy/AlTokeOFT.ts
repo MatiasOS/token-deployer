@@ -40,7 +40,6 @@ const deploy: DeployFunction = async (hre) => {
             'ATK', // symbol
             endpointV2Deployment.address, // LayerZero's EndpointV2 address
             deployer, // owner
-            100_000000000000000000n, // initial supply on each chain
         ],
         log: true,
         skipIfAlreadyDeployed: false,

@@ -10,9 +10,9 @@ contract AlTokeOFT is OFT {
         string memory _symbol,
         address _lzEndpoint,
         address _delegate,
+        address _distributor,
         uint256 _amount
     ) OFT(_name, _symbol, _lzEndpoint, _delegate) Ownable(_delegate) {
-        _mint(_delegate, _amount);
+        _mint(_distributor, _amount);
     }
-
 }
