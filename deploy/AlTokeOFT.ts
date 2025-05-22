@@ -33,6 +33,8 @@ const deploy: DeployFunction = async (hre) => {
     // }
     const endpointV2Deployment = await hre.deployments.get('EndpointV2')
 
+    console.log(`EndpointV2: ${endpointV2Deployment}`)
+    console.log(`EndpointV2 chainId: ${endpointV2Deployment.address}`)
     const { address } = await deploy(contractName, {
         from: deployer,
         args: [
@@ -40,6 +42,8 @@ const deploy: DeployFunction = async (hre) => {
             'ATK', // symbol
             endpointV2Deployment.address, // LayerZero's EndpointV2 address
             deployer, // owner
+            deployer,
+            1000n,
         ],
         log: true,
         skipIfAlreadyDeployed: false,

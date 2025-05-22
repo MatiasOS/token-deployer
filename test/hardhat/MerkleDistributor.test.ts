@@ -60,7 +60,8 @@ describe('MerkleDistributor Test', function () {
 
         // console.log('claims: ', claims)
         tree = StandardMerkleTree.of(claims, ['address', 'uint256'])
-
+        // console.log('root', tree.root)
+        // console.log('token address', alTokeOFT.address)
         merkleDistributor = await MerkleDistributor.deploy(alTokeOFT.address, tree.root)
 
         await alTokeOFT.transfer(merkleDistributor.address, claimAmount)
